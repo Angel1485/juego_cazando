@@ -2,22 +2,21 @@
 <html>
 <head>
   <title>Juego Cazando</title>
-
+  <link rel="stylesheet" href="cazando.css">
 </head>
 <body>
 
   <h1>Juego Cazando</h1>
-  <p>Autor: Tu Nombre o Nickname</p>
+  <p>Autor: Angel Sarango</p>
 
+  <canvas id="areaJuego" width="500" height="500"></canvas>
 
   <div class="controles">
-    <button>⬆</button>
-    <br>
-    <button>⬅</button>
-    <button>⬇</button>
-    <button>➡</button>
+    <button id="btnArriba">⬆</button><br>
+    <button id="btnIzquierda">⬅</button>
+    <button id="btnAbajo">⬇</button>
+    <button id="btnDerecha">➡</button>
   </div>
-
 
   <div class="panel">
     <span>Puntos: <span id="puntos">0</span></span>
@@ -26,6 +25,6 @@
 
   <p id="mensaje"></p>
 
-
+  <script src="cazando.js"></script>
 </body>
 </html>
