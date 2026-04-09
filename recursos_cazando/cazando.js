@@ -2,9 +2,11 @@ let canvas = document.getElementById("areaJuego");
 let ctx = canvas.getContext("2d");
 let gatoX = 0;
 let gatoY = 0;
-let comidaX = 0;
-let comidaY = 0;
+let comidaX = 100;
+let comidaY = 200;
 let puntaje = 0;
+let tiempo = 10;
+let intervalo;
 
 const ANCHO_GATO = 50;
 const ALTO_GATO = 50;
@@ -41,6 +43,7 @@ function iniciarJuego()
     gatoY = (canvas.height / 2) - (ALTO_GATO / 2);
     graficarGato();
     graficarComida();
+    intervalo = setInterval(restarTiempo, 1000);
 }
 
 function moverIzquierda()
@@ -111,7 +114,19 @@ function generarAleatorio(min,max){
     return numeroEntero
 }
 
-function mostrarEnSpan(spanPuntaje,valor){
-    let componente=document.getElementById(spanPuntaje);
+function mostrarEnSpan(spanId,valor){
+    let componente=document.getElementById(spanId);
     componente.textContent=valor;
+}
+
+function restarTiempo()
+{
+    tiempo -= 1;
+    mostrarEnSpan("spanTiempo", tiempo);
+
+    if (tiempo <= 0)
+    {
+        clearInterval(intervalo);  //Detiene el temporizador
+        alert("¡Juego terminado! Tu puntaje fue: " + puntaje);
+    }
 }
