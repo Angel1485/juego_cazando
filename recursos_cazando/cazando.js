@@ -9,12 +9,14 @@ const ANCHO_GATO = 50;
 const ALTO_GATO = 50;
 const ANCHO_COMIDA = 30;
 const ALTO_COMIDA = 30;
-const VELOCIDAD = 10;
 
 document.getElementById("btnArriba").onclick = moverArriba;
 document.getElementById("btnAbajo").onclick = moverAbajo;
 document.getElementById("btnIzquierda").onclick = moverIzquierda;
 document.getElementById("btnDerecha").onclick = moverDerecha;
+
+iniciarJuego();
+//window.onload = iniciarJuego;
 
 function graficarRectangulo(x,y,ancho,alto,color)
 {
@@ -46,6 +48,7 @@ function moverIzquierda()
     limpiarCanva();
     graficarGato();
     graficarComida();
+    detectarColision();
 }
 
 function moverArriba()
@@ -54,6 +57,7 @@ function moverArriba()
     limpiarCanva();
     graficarGato();
     graficarComida();
+    detectarColision();
 }
 function moverAbajo()
 {
@@ -61,30 +65,32 @@ function moverAbajo()
     limpiarCanva();
     graficarGato();
     graficarComida();
+    detectarColision();
 }
-function moverIzquierda()
-{
-    gatoX -= 10;
-    limpiarCanva();
-    graficarGato();
-    graficarComida();
-}
+
 function moverDerecha()
 {
     gatoX += 10;
     limpiarCanva();
     graficarGato();
     graficarComida();
+    detectarColision();
 }
-
-iniciarJuego();
-//window.onload = iniciarJuego;
 
 function limpiarCanva()
 {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 }
 
-
+function detectarColision()
+{
+    if (gatoX < comidaX + ANCHO_COMIDA &&
+        gatoX + ANCHO_GATO > comidaX &&
+        gatoY < comidaY + ALTO_COMIDA &&
+        gatoY + ALTO_GATO > comidaY)
+    {
+        alert("¡El gato atrapo la comida!");
+    }
+}
 
 
