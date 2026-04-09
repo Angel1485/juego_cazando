@@ -4,6 +4,7 @@ let gatoX = 0;
 let gatoY = 0;
 let comidaX = 0;
 let comidaY = 0;
+let puntaje = 0;
 
 const ANCHO_GATO = 50;
 const ALTO_GATO = 50;
@@ -89,8 +90,28 @@ function detectarColision()
         gatoY < comidaY + ALTO_COMIDA &&
         gatoY + ALTO_GATO > comidaY)
     {
-        alert("¡El gato atrapo la comida!");
+       // alert("¡El gato atrapo la comida!");
+        comidaX = generarAleatorio(0, canvas.width - ANCHO_COMIDA);
+        comidaY = generarAleatorio(0, canvas.height - ALTO_COMIDA);
+
+        puntaje += 1;
+        mostrarEnSpan("spanPuntaje", puntaje);
+
+        limpiarCanva();
+        graficarGato();
+        graficarComida();
     }
 }
 
+function generarAleatorio(min,max){
+    let random=Math.random();
+    let numero=random*(max-min+1);
+    let numeroEntero = Math.ceil(numero);
+    numeroEntero = numeroEntero+min-1;
+    return numeroEntero
+}
 
+function mostrarEnSpan(spanPuntaje,valor){
+    let componente=document.getElementById(spanPuntaje);
+    componente.textContent=valor;
+}
