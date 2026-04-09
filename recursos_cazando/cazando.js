@@ -17,6 +17,7 @@ document.getElementById("btnArriba").onclick = moverArriba;
 document.getElementById("btnAbajo").onclick = moverAbajo;
 document.getElementById("btnIzquierda").onclick = moverIzquierda;
 document.getElementById("btnDerecha").onclick = moverDerecha;
+document.getElementById("btnReiniciar").onclick = reiniciarJuego;
 
 iniciarJuego();
 //window.onload = iniciarJuego;
@@ -97,12 +98,19 @@ function detectarColision()
         comidaX = generarAleatorio(0, canvas.width - ANCHO_COMIDA);
         comidaY = generarAleatorio(0, canvas.height - ALTO_COMIDA);
 
-        puntaje += 1;
+        puntaje += 3; // se aumenta el puntaje para la prueba de ganador
         mostrarEnSpan("spanPuntaje", puntaje);
 
         limpiarCanva();
         graficarGato();
         graficarComida();
+
+         if (puntaje >= 6)
+        {
+            clearInterval(intervalo);
+            alert("¡Felicidades, ganaste! Puntaje: " + puntaje);
+        }
+ 
     }
 }
 
@@ -127,6 +135,27 @@ function restarTiempo()
     if (tiempo <= 0)
     {
         clearInterval(intervalo);  //Detiene el temporizador
-        alert("¡Juego terminado! Tu puntaje fue: " + puntaje);
+        alert("¡Game Over! Tu puntaje fue: " + puntaje);
     }
+}
+
+function reiniciarJuego()
+{
+    clearInterval(intervalo);
+
+    tiempo = 10;
+    puntaje = 0;
+    gatoX = (canvas.width / 2) - (ANCHO_GATO / 2);
+    gatoY = (canvas.height / 2) - (ALTO_GATO / 2);
+    comidaX = generarAleatorio(0, canvas.width - ANCHO_COMIDA);
+    comidaY = generarAleatorio(0, canvas.height - ALTO_COMIDA);
+
+    mostrarEnSpan("spanTiempo", tiempo);
+    mostrarEnSpan("spanPuntaje", puntaje);
+
+    limpiarCanva();
+    graficarGato();
+    graficarComida();
+
+    intervalo = setInterval(restarTiempo, 1000);
 }
