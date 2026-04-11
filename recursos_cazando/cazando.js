@@ -19,9 +19,6 @@ document.getElementById("btnIzquierda").onclick = moverIzquierda;
 document.getElementById("btnDerecha").onclick = moverDerecha;
 document.getElementById("btnReiniciar").onclick = reiniciarJuego;
 
-iniciarJuego();
-//window.onload = iniciarJuego;
-
 function graficarRectangulo(x,y,ancho,alto,color)
 {
     ctx.fillStyle = color;
@@ -49,37 +46,53 @@ function iniciarJuego()
 
 function moverIzquierda()
 {
-    gatoX -= 10;
-    limpiarCanva();
-    graficarGato();
-    graficarComida();
-    detectarColision();
+     if (gatoX - 10 >= 0)
+     {
+        gatoX -= 10;
+        limpiarCanva();
+        graficarGato();
+        graficarComida();
+        detectarColision();
+     }
+    
 }
 
 function moverArriba()
 {
-    gatoY -= 10;
-    limpiarCanva();
-    graficarGato();
-    graficarComida();
-    detectarColision();
+    if (gatoY - 10 >= 0)
+    {
+        gatoY -= 10;
+        limpiarCanva();
+        graficarGato();
+        graficarComida();
+        detectarColision();
+    }
+    
 }
 function moverAbajo()
 {
-    gatoY += 10;
-    limpiarCanva();
-    graficarGato();
-    graficarComida();
-    detectarColision();
+    if (gatoY + ALTO_GATO + 10 <= canvas.height)
+    {
+        gatoY += 10;
+        limpiarCanva();
+        graficarGato();
+        graficarComida();
+        detectarColision();
+    }
+    
 }
 
 function moverDerecha()
 {
-    gatoX += 10;
-    limpiarCanva();
-    graficarGato();
-    graficarComida();
-    detectarColision();
+    if (gatoX + ANCHO_GATO + 10 <= canvas.width)
+    {
+        gatoX += 10;
+        limpiarCanva();
+        graficarGato();
+        graficarComida();
+        detectarColision();
+    }
+    
 }
 
 function limpiarCanva()
@@ -94,7 +107,6 @@ function detectarColision()
         gatoY < comidaY + ALTO_COMIDA &&
         gatoY + ALTO_GATO > comidaY)
     {
-       // alert("¡El gato atrapo la comida!");
         comidaX = generarAleatorio(0, canvas.width - ANCHO_COMIDA);
         comidaY = generarAleatorio(0, canvas.height - ALTO_COMIDA);
 
@@ -107,8 +119,8 @@ function detectarColision()
 
          if (puntaje >= 6)
         {
-            clearInterval(intervalo);
             alert("¡Felicidades, ganaste! Puntaje: " + puntaje);
+            reiniciarJuego()
         }
  
     }
@@ -134,8 +146,8 @@ function restarTiempo()
 
     if (tiempo <= 0)
     {
-        clearInterval(intervalo);  //Detiene el temporizador
         alert("¡Game Over! Tu puntaje fue: " + puntaje);
+        reiniciarJuego()
     }
 }
 
