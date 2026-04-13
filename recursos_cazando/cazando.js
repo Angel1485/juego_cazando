@@ -92,7 +92,6 @@ function moverDerecha()
         graficarComida();
         detectarColision();
     }
-    
 }
 
 function limpiarCanva()
@@ -122,7 +121,6 @@ function detectarColision()
             alert("¡Felicidades, ganaste! Puntaje: " + puntaje);
             reiniciarJuego()
         }
- 
     }
 }
 
