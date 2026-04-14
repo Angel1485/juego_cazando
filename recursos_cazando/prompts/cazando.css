@@ -2,9 +2,9 @@
    NEON CAT // CAZADOR v2.0
    Futuristic Dark Theme
    =========================== */
- 
+
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap');
- 
+
 :root {
   --neon-cyan: #00f5ff;
   --neon-purple: #bf00ff;
@@ -20,9 +20,9 @@
   --font-hud: 'Orbitron', monospace;
   --font-mono: 'Share Tech Mono', monospace;
 }
- 
+
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
- 
+
 body {
   background: var(--bg-dark);
   color: var(--text-main);
@@ -31,7 +31,7 @@ body {
   overflow-x: hidden;
   position: relative;
 }
- 
+
 /* Scanlines overlay */
 .scanlines {
   position: fixed;
@@ -46,7 +46,7 @@ body {
   pointer-events: none;
   z-index: 1000;
 }
- 
+
 /* Grid background */
 .bg-grid {
   position: fixed;
@@ -58,7 +58,7 @@ body {
   pointer-events: none;
   z-index: 0;
 }
- 
+
 .container {
   position: relative;
   z-index: 10;
@@ -66,17 +66,17 @@ body {
   margin: 0 auto;
   padding: 20px 15px;
 }
- 
+
 /* ===== HEADER ===== */
 header {
   text-align: center;
   margin-bottom: 20px;
 }
- 
+
 .title-block { position: relative; display: inline-block; }
- 
+
 .glitch-wrap { position: relative; }
- 
+
 .glitch {
   font-family: var(--font-hud);
   font-size: clamp(2rem, 6vw, 3.5rem);
@@ -90,7 +90,7 @@ header {
   position: relative;
   animation: glitch 4s infinite;
 }
- 
+
 .glitch::before,
 .glitch::after {
   content: attr(data-text);
@@ -98,21 +98,21 @@ header {
   top: 0; left: 0;
   width: 100%;
 }
- 
+
 .glitch::before {
   color: var(--neon-pink);
   animation: glitch-top 4s infinite;
   clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%);
   text-shadow: 2px 0 var(--neon-pink);
 }
- 
+
 .glitch::after {
   color: var(--neon-purple);
   animation: glitch-bottom 4s infinite;
   clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%);
   text-shadow: -2px 0 var(--neon-purple);
 }
- 
+
 @keyframes glitch {
   0%, 90%, 100% { transform: translate(0); }
   92% { transform: translate(-2px, 1px); }
@@ -131,7 +131,7 @@ header {
   95% { transform: translate(3px, 0); opacity: 0.8; }
   97% { opacity: 0; }
 }
- 
+
 .subtitle {
   font-family: var(--font-mono);
   font-size: 0.85rem;
@@ -141,7 +141,7 @@ header {
   animation: blink 2s step-end infinite;
 }
 @keyframes blink { 50% { opacity: 0.3; } }
- 
+
 /* ===== LAYOUT ===== */
 .game-layout {
   display: flex;
@@ -149,7 +149,7 @@ header {
   align-items: flex-start;
   justify-content: center;
 }
- 
+
 /* ===== SIDE PANELS ===== */
 .side-panel {
   display: flex;
@@ -158,7 +158,7 @@ header {
   width: 130px;
   flex-shrink: 0;
 }
- 
+
 .stat-card {
   background: var(--bg-card);
   border: 1px solid var(--border-glow);
@@ -167,7 +167,7 @@ header {
   position: relative;
   overflow: hidden;
 }
- 
+
 .stat-card::before {
   content: '';
   position: absolute;
@@ -177,7 +177,7 @@ header {
   animation: scan 3s linear infinite;
 }
 @keyframes scan { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
- 
+
 .stat-label {
   font-family: var(--font-hud);
   font-size: 0.55rem;
@@ -185,7 +185,7 @@ header {
   letter-spacing: 0.2em;
   margin-bottom: 4px;
 }
- 
+
 .stat-value {
   font-family: var(--font-hud);
   font-size: 1.5rem;
@@ -194,7 +194,7 @@ header {
   text-shadow: 0 0 10px var(--neon-cyan);
   letter-spacing: 0.05em;
 }
- 
+
 .stat-bar {
   height: 3px;
   background: rgba(255,255,255,0.05);
@@ -202,7 +202,7 @@ header {
   margin-top: 6px;
   overflow: hidden;
 }
- 
+
 .stat-fill {
   height: 100%;
   width: 0%;
@@ -211,13 +211,13 @@ header {
   transition: width 0.3s ease;
   box-shadow: 0 0 6px var(--neon-cyan);
 }
- 
+
 .time-fill {
   background: linear-gradient(90deg, var(--neon-pink), var(--neon-yellow));
   box-shadow: 0 0 6px var(--neon-yellow);
   width: 100%;
 }
- 
+
 .lives {
   display: flex;
   gap: 4px;
@@ -230,7 +230,7 @@ header {
   transition: opacity 0.3s;
 }
 .life.lost { opacity: 0.15; }
- 
+
 .log-card { flex: 1; }
 .log-panel {
   font-size: 0.6rem;
@@ -241,13 +241,13 @@ header {
   overflow-y: auto;
   scrollbar-width: none;
 }
- 
+
 /* ===== CANVAS ===== */
 .canvas-wrap {
   position: relative;
   flex-shrink: 0;
 }
- 
+
 .corner {
   position: absolute;
   width: 16px; height: 16px;
@@ -259,7 +259,7 @@ header {
 .tr { top: -4px; right: -4px; border-width: 2px 2px 0 0; box-shadow: 2px -2px 8px var(--neon-cyan); }
 .bl { bottom: -4px; left: -4px; border-width: 0 0 2px 2px; box-shadow: -2px 2px 8px var(--neon-cyan); }
 .br { bottom: -4px; right: -4px; border-width: 0 2px 2px 0; box-shadow: 2px 2px 8px var(--neon-cyan); }
- 
+
 #areaJuego {
   display: block;
   background: #010a14;
@@ -268,7 +268,7 @@ header {
     0 0 20px rgba(0,245,255,0.1),
     inset 0 0 40px rgba(0,0,0,0.8);
 }
- 
+
 /* ===== OVERLAY ===== */
 .overlay {
   position: absolute;
@@ -281,9 +281,9 @@ header {
   backdrop-filter: blur(4px);
 }
 .overlay.hidden { display: none; }
- 
+
 .overlay-content { text-align: center; }
- 
+
 .overlay-title {
   font-family: var(--font-hud);
   font-size: 1.8rem;
@@ -295,14 +295,14 @@ header {
   animation: pulse 1s ease infinite alternate;
 }
 @keyframes pulse { from { opacity: 0.7; } to { opacity: 1; } }
- 
+
 .overlay-score {
   font-family: var(--font-mono);
   font-size: 1rem;
   color: var(--text-dim);
   margin-bottom: 20px;
 }
- 
+
 .btn-play {
   font-family: var(--font-hud);
   font-size: 0.9rem;
@@ -322,27 +322,27 @@ header {
   color: white;
   box-shadow: 0 0 20px var(--neon-purple);
 }
- 
+
 /* ===== CONTROLS ===== */
 .controles {
   display: flex;
   justify-content: center;
   margin-top: 18px;
 }
- 
+
 .dpad {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 4px;
 }
- 
+
 .dpad-row {
   display: flex;
   align-items: center;
   gap: 4px;
 }
- 
+
 .dpad-center {
   width: 44px; height: 44px;
   display: flex; align-items: center; justify-content: center;
@@ -351,7 +351,7 @@ header {
   background: var(--bg-card);
   border: 1px solid var(--border-glow);
 }
- 
+
 .btn-dir {
   width: 44px; height: 44px;
   font-size: 1rem;
@@ -364,14 +364,14 @@ header {
   display: flex; align-items: center; justify-content: center;
   text-shadow: 0 0 8px var(--neon-cyan);
 }
- 
+
 .btn-dir:hover, .btn-dir:active {
   background: rgba(0,245,255,0.1);
   border-color: var(--neon-cyan);
   box-shadow: 0 0 12px rgba(0,245,255,0.4), inset 0 0 8px rgba(0,245,255,0.1);
   transform: scale(0.95);
 }
- 
+
 /* ===== ACTION BUTTONS ===== */
 .action-btns {
   display: flex;
@@ -380,7 +380,7 @@ header {
   margin-top: 14px;
   flex-wrap: wrap;
 }
- 
+
 .btn-action {
   font-family: var(--font-hud);
   font-size: 0.65rem;
@@ -394,13 +394,13 @@ header {
   transition: all 0.2s;
   clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
 }
- 
+
 .btn-action:hover {
   color: var(--neon-cyan);
   border-color: var(--neon-cyan);
   box-shadow: 0 0 12px rgba(0,245,255,0.3);
 }
- 
+
 /* ===== MISC ===== */
 .mensaje {
   text-align: center;
@@ -412,7 +412,7 @@ header {
   margin-top: 10px;
   letter-spacing: 0.1em;
 }
- 
+
 .autor {
   text-align: center;
   font-family: var(--font-mono);
@@ -421,7 +421,7 @@ header {
   margin-top: 16px;
   letter-spacing: 0.2em;
 }
- 
+
 /* ===== RESPONSIVE ===== */
 @media (max-width: 680px) {
   .game-layout { flex-direction: column; align-items: center; }

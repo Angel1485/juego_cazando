@@ -1,15 +1,14 @@
-
 // ===========================
 // NEON CAT // CAZADOR v2.0
 // ===========================
- 
+
 const canvas = document.getElementById("areaJuego");
 const ctx = canvas.getContext("2d");
- 
+
 // Variables de posición
 let gatoX = 0, gatoY = 0;
 let comidaX = 100, comidaY = 200;
- 
+
 // Variables de juego
 let puntaje = 0;
 let tiempo = 10;
@@ -22,20 +21,20 @@ let ultimaComida = 0;
 let velocidad = 10;
 let pausado = false;
 let juegoActivo = false;
- 
+
 // Constantes de tamaño
 const ANCHO_GATO = 50;
 const ALTO_GATO = 50;
 const ANCHO_COMIDA = 30;
 const ALTO_COMIDA = 30;
- 
+
 // ===== BOTONES =====
 document.getElementById("btnArriba").onclick = () => mover("arriba");
 document.getElementById("btnAbajo").onclick = () => mover("abajo");
 document.getElementById("btnIzquierda").onclick = () => mover("izquierda");
 document.getElementById("btnDerecha").onclick = () => mover("derecha");
 document.getElementById("btnReiniciar").onclick = reiniciarJuego;
- 
+
 // ===== TECLADO =====
 document.addEventListener("keydown", (e) => {
   if (!juegoActivo || pausado) return;
@@ -46,13 +45,13 @@ document.addEventListener("keydown", (e) => {
   if (e.key === "p" || e.key === "P") togglePausa();
   if (e.key === "r" || e.key === "R") reiniciarJuego();
 });
- 
+
 // ===== DIBUJO =====
 function graficarRectangulo(x, y, ancho, alto, color) {
   ctx.fillStyle = color;
   ctx.fillRect(x, y, ancho, alto);
 }
- 
+
 function graficarGato() {
   // Sombra de neón
   ctx.shadowColor = "#bf00ff";
@@ -62,7 +61,7 @@ function graficarGato() {
   ctx.fillText("🐱", gatoX, gatoY);
   ctx.shadowBlur = 0;
 }
- 
+
 function graficarComida() {
   ctx.shadowColor = "#39ff14";
   ctx.shadowBlur = 15;
@@ -71,7 +70,7 @@ function graficarComida() {
   ctx.fillText("🐭", comidaX, comidaY);
   ctx.shadowBlur = 0;
 }
- 
+
 function limpiarCanva() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   // Grid de fondo
@@ -84,7 +83,7 @@ function limpiarCanva() {
     ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(canvas.width, y); ctx.stroke();
   }
 }
- 
+
 // ===== MOVIMIENTO =====
 function mover(direccion) {
   if (!juegoActivo || pausado) return;
@@ -97,7 +96,7 @@ function mover(direccion) {
   graficarComida();
   detectarColision();
 }
- 
+
 // ===== COLISION =====
 function detectarColision() {
   if (gatoX < comidaX + ANCHO_COMIDA &&
@@ -110,31 +109,31 @@ function detectarColision() {
     if (ahora - ultimaComida < 3000) combo++;
     else combo = 1;
     ultimaComida = ahora;
- 
+
     const puntos = 1 * combo;
     puntaje += puntos;
- 
+
     // Reposicionar comida
     comidaX = generarAleatorio(0, canvas.width - ANCHO_COMIDA);
     comidaY = generarAleatorio(0, canvas.height - ALTO_COMIDA);
- 
+
     // Actualizar UI
     actualizarHUD();
     agregarLog(`+${puntos} pts ${combo > 1 ? "x" + combo + " COMBO!" : ""}`);
     mostrarMensaje(`+${puntos} ${combo > 1 ? "🔥 COMBO x" + combo : ""}`, 800);
- 
+
     limpiarCanva();
     graficarGato();
     graficarComida();
- 
+
     // Subir de nivel cada 5 puntos
     if (puntaje > 0 && puntaje % 5 === 0) subirNivel();
- 
+
     // Ganar
     if (puntaje >= 6 * nivel) terminarJuego(true);
   }
 }
- 
+
 // ===== NIVEL =====
 function subirNivel() {
   nivel++;
@@ -143,7 +142,7 @@ function subirNivel() {
   agregarLog(`>> NIVEL ${nivel} DESBLOQUEADO`);
   mostrarMensaje(`⚡ NIVEL ${nivel}`, 1200);
 }
- 
+
 // ===== TIEMPO =====
 function restarTiempo() {
   tiempo--;
@@ -161,7 +160,7 @@ function restarTiempo() {
     }
   }
 }
- 
+
 // ===== FIN DE JUEGO =====
 function terminarJuego(gano) {
   clearInterval(intervalo);
@@ -180,7 +179,7 @@ function terminarJuego(gano) {
   score.textContent = `PUNTAJE: ${puntaje} | NIVEL: ${nivel} | RÉCORD: ${record}`;
   agregarLog(gano ? ">> VICTORIA" : ">> GAME OVER");
 }
- 
+
 // ===== HUD =====
 function actualizarHUD() {
   mostrarEnSpan("spanPuntaje", String(puntaje).padStart(3, "0"));
@@ -188,12 +187,12 @@ function actualizarHUD() {
   const barPuntaje = document.getElementById("puntajeBar");
   if (barPuntaje) barPuntaje.style.width = Math.min((puntaje / (6 * nivel)) * 100, 100) + "%";
 }
- 
+
 function actualizarBarraTiempo() {
   const bar = document.getElementById("tiempoBar");
   if (bar) bar.style.width = (tiempo / 10) * 100 + "%";
 }
- 
+
 function actualizarVidas() {
   const vds = document.querySelectorAll(".life");
   vds.forEach((v, i) => {
@@ -201,7 +200,7 @@ function actualizarVidas() {
     else v.classList.remove("lost");
   });
 }
- 
+
 function agregarLog(msg) {
   const log = document.getElementById("logPanel");
   if (!log) return;
@@ -210,14 +209,14 @@ function agregarLog(msg) {
   log.prepend(linea);
   if (log.children.length > 8) log.removeChild(log.lastChild);
 }
- 
+
 function mostrarMensaje(texto, duracion) {
   const msg = document.getElementById("mensaje");
   if (!msg) return;
   msg.textContent = texto;
   setTimeout(() => { msg.textContent = ""; }, duracion);
 }
- 
+
 // ===== PAUSA =====
 function togglePausa() {
   if (!juegoActivo) return;
@@ -233,7 +232,7 @@ function togglePausa() {
     mostrarMensaje("", 0);
   }
 }
- 
+
 // ===== VELOCIDAD =====
 function cambiarVelocidad() {
   const modos = [
@@ -248,7 +247,7 @@ function cambiarVelocidad() {
   document.getElementById("btnVelocidad").textContent = `⚡ VELOCIDAD: ${modos[siguiente].nombre}`;
   agregarLog(`>> VELOCIDAD: ${modos[siguiente].nombre}`);
 }
- 
+
 // ===== INICIAR =====
 function iniciarJuego() {
   juegoActivo = true;
@@ -265,7 +264,7 @@ function iniciarJuego() {
   agregarLog(">> JUEGO INICIADO");
   intervalo = setInterval(restarTiempo, 1000);
 }
- 
+
 // ===== REINICIAR =====
 function reiniciarJuego() {
   clearInterval(intervalo);
@@ -285,7 +284,7 @@ function reiniciarJuego() {
   document.getElementById("btnVelocidad").textContent = "⚡ VELOCIDAD: NORMAL";
   iniciarJuego();
 }
- 
+
 // ===== UTILIDADES =====
 function generarAleatorio(min, max) {
   let random = Math.random();
@@ -294,9 +293,8 @@ function generarAleatorio(min, max) {
   numeroEntero = numeroEntero + min - 1;
   return numeroEntero;
 }
- 
+
 function mostrarEnSpan(spanId, valor) {
   let componente = document.getElementById(spanId);
   if (componente) componente.textContent = valor;
 }
- 

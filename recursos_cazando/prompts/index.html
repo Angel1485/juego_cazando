@@ -1,4 +1,3 @@
-Index · HTML
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -9,12 +8,12 @@ Index · HTML
   <link rel="stylesheet" href="cazando.css">
 </head>
 <body onload="iniciarJuego();">
- 
+
   <div class="scanlines"></div>
   <div class="bg-grid"></div>
- 
+
   <div class="container">
- 
+
     <header>
       <div class="title-block">
         <div class="glitch-wrap">
@@ -23,9 +22,9 @@ Index · HTML
         <p class="subtitle">// CAZADOR v2.0 //</p>
       </div>
     </header>
- 
+
     <div class="game-layout">
- 
+
       <!-- Panel izquierdo -->
       <div class="side-panel left-panel">
         <div class="stat-card">
@@ -49,7 +48,7 @@ Index · HTML
           </div>
         </div>
       </div>
- 
+
       <!-- Canvas central -->
       <div class="canvas-wrap">
         <div class="corner tl"></div>
@@ -65,7 +64,7 @@ Index · HTML
           </div>
         </div>
       </div>
- 
+
       <!-- Panel derecho -->
       <div class="side-panel right-panel">
         <div class="stat-card">
@@ -81,9 +80,9 @@ Index · HTML
           <div id="logPanel" class="log-panel"></div>
         </div>
       </div>
- 
+
     </div>
- 
+
     <!-- Controles -->
     <div class="controles">
       <div class="dpad">
@@ -96,18 +95,18 @@ Index · HTML
         <button class="btn-dir" id="btnAbajo">▼</button>
       </div>
     </div>
- 
+
     <!-- Botones de acción -->
     <div class="action-btns">
       <button class="btn-action" id="btnReiniciar">↺ REINICIAR</button>
       <button class="btn-action" id="btnPausa" onclick="togglePausa()">⏸ PAUSA</button>
       <button class="btn-action" id="btnVelocidad" onclick="cambiarVelocidad()">⚡ VELOCIDAD: NORMAL</button>
     </div>
- 
+
     <p id="mensaje" class="mensaje"></p>
     <p class="autor">// AUTOR: ANGEL SARANGO //</p>
   </div>
- 
+
   <script src="cazando.js"></script>
 </body>
 </html>
