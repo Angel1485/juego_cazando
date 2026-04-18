@@ -1,0 +1,10 @@
+Prompt 1:
+
+De los archivos dados dame una imagen adecuada para la clase .container , 
+.game-layout para el juego y tambien una imagem de fondo adecuada para 
+#areaJuego el resto se mantien igual, si hay que descargar las imagenes 
+dame le link de las mismas y donde van cada una.
+
+Prompt 2:
+
+Que los fondos se completen en la imagen tanto el container como el area de juego y el body

@@ -1,0 +1,29 @@
+Prompt 1:
+
+Del codigo dado como puedo graficar cuando hago mover el gato
+
+Prompt 2:
+
+Crear la función limpiarCanva (sin parámetros), que limpie toda el área del canvas utilizando
+
+Prompt 3:
+
+Cuando el gato toque la comida: • La comida debe desaparecer y reaparecer en una posición aleatoria en X y Y. • Utilizar las funciones disponibles en utilitarios.js (archivo de recursos)
+
+Prompt 4:
+
+Cuando el gato toque la comida: • La comida debe desaparecer y reaparecer en una posición aleatoria en X y Y. • Utilizar las funciones disponibles en utilitarios.js (archivo de recursos).
+
+    Sistema de puntaje: • Cada vez que el gato coma, gana 1 punto. • Incrementar el puntaje y mostrarlo en pantalla. • Utilizar funciones de utilitarios.js para actualizar la vista.
+
+function generarAleatorio(min,max){
+    let random=Math.random();
+    let numero=random*(max-min+1);
+    let numeroEntero = Math.ceil(numero);
+    numeroEntero = numeroEntero+min-1;
+    return numeroEntero
+}
+function mostrarEnSpan(idSpan,valor){
+    let componente=document.getElementById(idSpan);
+    componente.textContent=valor;
+}
