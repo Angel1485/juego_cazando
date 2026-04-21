@@ -12,7 +12,7 @@ let comidaX = 100, comidaY = 200;
  
 // Variables de juego
 let puntaje = 0;
-let tiempo = 15;  //Se cambia el limite de tiempo
+let tiempo = 15; //Se cambia el limite de tiempo a 15 segundos en todo el juego
 let intervalo;
 let record = 0;
 let nivel = 1;
@@ -133,7 +133,7 @@ function detectarColision() {
     // Ganar
     if (puntaje >= 6 * nivel) terminarJuego(true);
 
-    tiempo = 15;
+    tiempo = 15; 
   }
 }
  
@@ -157,7 +157,7 @@ function restarTiempo() {
     if (vidas <= 0) {
       terminarJuego(false);
     } else {
-      tiempo = 15; // Se actualzia nuevo tiempo
+      tiempo = 15; // //Se cambia el limite de tiempo a 15 segundos en todo el juego
       agregarLog(">> VIDA PERDIDA");
       mostrarMensaje("💔 VIDA PERDIDA", 1000);
     }
