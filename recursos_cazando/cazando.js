@@ -59,7 +59,7 @@ function graficarGato() {
   ctx.shadowBlur = 20;
   ctx.font = `${ANCHO_GATO}px serif`;
   ctx.textBaseline = "top";
-  ctx.fillText("🐱", gatoX, gatoY);
+  ctx.fillText("🐱", gatoX, gatoY); //esta es la imagen del gato anteriormente se le pdio a la Ia ayuda con las iamgenes
   ctx.shadowBlur = 0;
 }
  
@@ -68,7 +68,7 @@ function graficarComida() {
   ctx.shadowBlur = 15;
   ctx.font = `${ANCHO_COMIDA}px serif`;
   ctx.textBaseline = "top";
-  ctx.fillText("🐭", comidaX, comidaY);
+  ctx.fillText("🐭", comidaX, comidaY); //esta es la imagem del raton
   ctx.shadowBlur = 0;
 }
  
