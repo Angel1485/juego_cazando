@@ -133,8 +133,7 @@ function detectarColision() {
     // Ganar
     if (puntaje >= 6 * nivel) terminarJuego(true);
 
-    tiempo = 15; 
-  }
+    tiempo = 15; //Se cuando atrapa la comida se reinicia a 15 segundos 
 }
  
 // ===== NIVEL =====
@@ -274,7 +273,7 @@ function reiniciarJuego() {
   document.getElementById("overlay").classList.add("hidden");
   document.getElementById("btnPausa").textContent = "⏸ PAUSA";
   puntaje = 0;
-  tiempo = 15;
+  tiempo = 15; //Reinicia el juego a 15 segundos
   nivel = 1;
   vidas = 3;
   combo = 1;
