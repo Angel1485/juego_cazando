@@ -12,7 +12,7 @@ let comidaX = 100, comidaY = 200;
  
 // Variables de juego
 let puntaje = 0;
-let tiempo = 10;
+let tiempo = 15;  //Se cambia el limite de tiempo
 let intervalo;
 let record = 0;
 let nivel = 1;
@@ -155,7 +155,7 @@ function restarTiempo() {
     if (vidas <= 0) {
       terminarJuego(false);
     } else {
-      tiempo = 10;
+      tiempo = 15; // Se actualzia nuevo tiempo
       agregarLog(">> VIDA PERDIDA");
       mostrarMensaje("💔 VIDA PERDIDA", 1000);
     }
@@ -191,7 +191,7 @@ function actualizarHUD() {
  
 function actualizarBarraTiempo() {
   const bar = document.getElementById("tiempoBar");
-  if (bar) bar.style.width = (tiempo / 10) * 100 + "%";
+  if (bar) bar.style.width = (tiempo / 15) * 100 + "%";
 }
  
 function actualizarVidas() {
@@ -261,7 +261,7 @@ function iniciarJuego() {
   actualizarHUD();
   actualizarBarraTiempo();
   mostrarEnSpan("spanNivel", "01");
-  mostrarEnSpan("spanTiempo", "010");
+  mostrarEnSpan("spanTiempo", "015");
   agregarLog(">> JUEGO INICIADO");
   intervalo = setInterval(restarTiempo, 1000);
 }
@@ -272,7 +272,7 @@ function reiniciarJuego() {
   document.getElementById("overlay").classList.add("hidden");
   document.getElementById("btnPausa").textContent = "⏸ PAUSA";
   puntaje = 0;
-  tiempo = 10;
+  tiempo = 15;
   nivel = 1;
   vidas = 3;
   combo = 1;
