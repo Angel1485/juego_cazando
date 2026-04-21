@@ -135,6 +135,7 @@ function detectarColision() {
 
     tiempo = 15; //Se cuando atrapa la comida se reinicia a 15 segundos 
 }
+}
  
 // ===== NIVEL =====
 function subirNivel() {
@@ -300,4 +301,3 @@ function mostrarEnSpan(spanId, valor) {
   let componente = document.getElementById(spanId);
   if (componente) componente.textContent = valor;
 }
- 
