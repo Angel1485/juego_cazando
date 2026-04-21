@@ -148,7 +148,7 @@ function subirNivel() {
  
 // ===== TIEMPO =====
 function restarTiempo() {
-  tiempo--;
+  tiempo = tiempo - 1;  //Valor que resta el tiempo 
   mostrarEnSpan("spanTiempo", String(tiempo).padStart(3, "0"));
   actualizarBarraTiempo();
   if (tiempo <= 0) {
