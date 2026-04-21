@@ -132,6 +132,8 @@ function detectarColision() {
  
     // Ganar
     if (puntaje >= 6 * nivel) terminarJuego(true);
+
+    tiempo = 15;
   }
 }
  
